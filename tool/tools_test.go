@@ -25,3 +25,8 @@ func TestStringsTrim(t *testing.T) {
 	fmt.Println(s)
 	fmt.Println("s1= ", s1)
 }
+
+func TestGenRandom(t *testing.T) {
+	s := GenRandom(0, 123)
+	fmt.Println("ss", s)
+}

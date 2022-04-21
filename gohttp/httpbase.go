@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/transform"
-
 	"io/ioutil"
 	"net/http"
 )

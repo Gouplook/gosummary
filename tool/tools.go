@@ -8,10 +8,12 @@ package tool
 
 import (
 	"fmt"
+	"math/rand"
 	"reflect"
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 //map转数组 (提取map中的key值）
@@ -276,4 +278,12 @@ func ReflectModel(structPtr interface{}) {
 			f.Set(reflect.ValueOf(key))
 		}
 	}
+}
+
+//生成随机数
+func GenRandom(randomLen, randomKey int) (random string) {
+	n63, _ := strconv.Atoi("1" + strings.Repeat("0", randomLen))
+	s := fmt.Sprintf("%"+strconv.Itoa(randomLen)+"v%d", rand.New(rand.NewSource(time.Now().UnixNano())).Int63n(int64(n63)), randomKey)
+	random = strings.Trim(s, " ")
+	return random[0:randomLen]
 }
