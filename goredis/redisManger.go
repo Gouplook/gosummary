@@ -34,7 +34,7 @@ func RedisInit(db int, redism *RedisMgr) {
 	//	redis.wait=true
 	wait := true
 	timeout := time.Duration(idleTimeout) * time.Second
-	redisPass := "123456"
+	redisPass := ""
 
 	redism.pool = &redis.Pool{
 		MaxIdle:     maxIdle,
@@ -62,6 +62,21 @@ func (r *RedisMgr) GetConn() redis.Conn {
 }
 
 // **************Redis CRUD***********************
+
+// 设置过期时间
+func (r *RedisMgr) Setex(key string, seconds int, data interface{}) error {
+	conn := r.GetConn()
+	if conn.Err() != nil {
+		return conn.Err()
+	}
+	defer func() {
+		conn.Flush()
+		conn.Close()
+	}()
+
+	return conn.Send("SETEX", key, seconds, data)
+}
+
 // 向一个key[队列List]的尾部添加一个元素
 func (r *RedisMgr) Rpush(key string, data interface{}) error {
 	conn := r.GetConn()
