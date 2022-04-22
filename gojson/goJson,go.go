@@ -42,6 +42,40 @@ func JsonMarshal() {
 	fmt.Println(string(data))
 }
 
+func JsonMarshalBySile() {
+	var splice []map[string]interface{}
+	//创建切片需要装载的第一个map
+	var m1 map[string]interface{}
+	//make一些第一个map
+	m1 = make(map[string]interface{})
+	//第一个map的字段
+	m1["name"] = "柯旗星"
+	m1["age"] = 23
+	m1["birthday"] = "2020-12-12"
+	m1["sal"] = 12.2
+	//把第一个map装进多层切片中
+	splice = append(splice, m1)
+
+	//进行第二个map的处理和装载
+	var m2 map[string]interface{}
+	m2 = make(map[string]interface{})
+	m2["name"] = "柯旗星"
+	m2["age"] = 23
+	m2["birthday"] = "2020-12-12"
+	m2["sal"] = 12.2
+	splice = append(splice, m2)
+
+	fmt.Println(splice)
+	//对多层切片进行处理
+	data, err := json.Marshal(splice)
+	if err != nil {
+		fmt.Printf("序列化失败")
+	}
+	//打印出来
+	fmt.Printf("切片序列化后结果=%v\n", string(data))
+
+}
+
 // type，有些时候，我们在序列化或者反序列化的时候，可能结构体类型和需要的类型不一致，
 // 这个时候可以指定,支持string,number和boolean
 type Good struct {

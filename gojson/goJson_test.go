@@ -15,6 +15,10 @@ func TestJsonMarshal(t *testing.T) {
 	JsonMarshal()
 }
 
+func TestJsonMarshalBySile(t *testing.T) {
+	JsonMarshalBySile()
+}
+
 func TestJsonUnmarshal(t *testing.T) {
 	JsonUnmarshal()
 }

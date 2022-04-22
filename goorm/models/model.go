@@ -142,6 +142,7 @@ func (m *Model) Insert() (int, error) {
 	colsName = strings.TrimRight(colsName, ",")
 	colsValue = strings.TrimRight(colsValue, ",")
 	//  组合数据写入SQL
+	//INSERT INTO coupons(`num`,`receive_num`,`used_num`,`name`,`amount`) VALUES (?,?,?,?,?);
 	sql := fmt.Sprintf("INSERT INTO %s(%s) VALUES (%s);", m.table, colsName, colsValue)
 	retData, err := m.o.Raw(sql, param...).Exec()
 	m.sql = fmt.Sprintf("%s-`%s`", sql, tool.Implode("`, `", param))
@@ -356,9 +357,6 @@ func (m *Model) UpdateCase(data []map[string]interface{}, field_key string) (int
 
 	m.sql = fmt.Sprintf("%s-`%s`", sql, tool.Implode("`, `", param))
 	if err != nil {
-		//if kcgin.KcConfig.RunMode != kcgin.PROD {
-		//	logs.Error("Sql:", sql, " Error,", err.Error())
-		//}
 		return 0, err
 	}
 	num, _ := sqlSource.RowsAffected()
