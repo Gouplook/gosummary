@@ -4,7 +4,7 @@
     停止服务：redis-server  --service-stop
 
 
-    server:
+    server:(WIN)
     redis-server redis.windows.conf
 
     client:

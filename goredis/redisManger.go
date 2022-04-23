@@ -26,7 +26,6 @@ func RedisInit(db int, redism *RedisMgr) {
 	maxIdle := 50
 	//最大连接数
 	maxActive := 600
-
 	//空闲链接超时时间
 	idleTimeout := 600
 	//如果超过最大连接，是报错，还是等待

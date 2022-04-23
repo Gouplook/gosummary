@@ -84,6 +84,8 @@ func (g *GoModel) Find(name string) (result map[string]interface{}) {
 		{g.Field.F_name, name},
 	}).Find()
 }
+
+// between 查询
 func (g *GoModel) SelectsBetween(amountStar, amountEnd float64) []map[string]interface{} {
 	return g.Model.Where([]models.WhereItem{
 		{g.Field.F_amount, []interface{}{"BETWEEN", []float64{amountStar, amountEnd}}},
