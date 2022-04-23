@@ -190,3 +190,20 @@ func TestGoModel_SelectsByIds(t *testing.T) {
 	rb, _ := json.Marshal(rs)
 	fmt.Println(string(rb))
 }
+
+func TestGoModeFindBetween(t *testing.T) {
+	models.Init()
+	cModel := new(gomode.GoModel).Init()
+	rs := cModel.SelectsBetween(15.5, 35.5)
+	fmt.Println(rs)
+}
+
+func TestGoModelSelectsLike(t *testing.T) {
+	models.Init()
+	cModel := new(gomode.GoModel).Init()
+	rs := cModel.SelectsLike("月份")
+	//rr, _ := json.Marshal(rs)
+
+	fmt.Println(rs)
+	//logs.Info(string(rr))
+}

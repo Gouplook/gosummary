@@ -35,7 +35,6 @@ type WhereItem struct {
 
 //操作另一张表,表名不需要扩展
 func (m *Model) Table(table string) *Model {
-
 	m.table = T_PREFIX + table
 	return m
 }
