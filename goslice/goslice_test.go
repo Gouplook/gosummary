@@ -9,6 +9,8 @@ package goslice
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -29,4 +31,17 @@ func TestSliceContains(t *testing.T) {
 
 	//a = tool.ArrayUniqueInt(a)
 	SliceContains(a, b)
+}
+
+func Test_BB(t *testing.T){
+
+	m := []int {1,33,66,12}
+	ms := make([]string,0)
+	for _,v := range m{
+		str := strconv.Itoa(v)
+		ms = append(ms,str)
+	}
+	fmt.Println(ms)
+	fmt.Println(strings.Join(ms,","))
+
 }
