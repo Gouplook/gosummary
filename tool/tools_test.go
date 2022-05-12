@@ -26,7 +26,8 @@ func TestStringsTrim(t *testing.T) {
 	fmt.Println("s1= ", s1)
 }
 
+// 生产字符串编号
 func TestGenRandom(t *testing.T) {
-	s := GenRandom(0, 123)
+	s := GenRandom(11, 123)
 	fmt.Println("ss", s)
 }

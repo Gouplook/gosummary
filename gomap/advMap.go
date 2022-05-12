@@ -30,9 +30,9 @@ type Card struct {
 type CardMap struct {
 	Name    string  // 名称
 	Price   float64 // 价格
-	CardId  int     `mapstructure:"card_id"` // 如需要加下划线的，必须自己定义tag
+	CardId  int     `mapstructure:"card_id"` // 如需要加下划线的，必须自己定义tag 保持与之前的map字段一样
 	Clicks  int     // 点击量
-	SalesNu int
+	SalesNu int     `mapstructure:"salesnum"` // 添加tag 保持与需要转到的map字段一致
 }
 
 // 定义一个map
@@ -44,28 +44,18 @@ func AdvanceMap() {
 	maps[0]["price"] = 100.0
 	maps[0]["salesnum"] = 1003
 
-	// maps[1] = make(map[string]interface{})
-	// maps[1]["name"] = "综合1"
-	// maps[1]["card_id"] = 12
-	// maps[1]["price"] = 100.1
-	// maps[1]["salesnum"] = 1004
-	//
-	// maps[2] = make(map[string]interface{})
-	// maps[2]["name"] = "综合2"
-	// maps[2]["card_id"] = 13
-	// maps[2]["price"] = 200.2
-	// maps[2]["salesnum"] = 1005
-	//
-	// maps[3] = make(map[string]interface{})
-	// maps[3]["name"] = "综合3"
-	// maps[3]["card_id"] = 14
-	// maps[3]["price"] = 300.5
-	// maps[3]["salesnum"] = 1006
-	// 19900003-J-OP030L-00-00
-
 	fmt.Println("maps=====", maps)
-	//var outStruct []CardBase
 	var outStruct []CardMap // 测试map 与结构体字段不一致，转换不了
+
+	_ = mapstructure.WeakDecode(maps, &outStruct)
+	for _, v := range outStruct {
+		fmt.Println("========key value =======")
+		fmt.Println("Name  = ", v.Name)
+		fmt.Println("CardId  = ", v.CardId)
+		fmt.Println("SalesNu  = ", v.SalesNu)
+		fmt.Println("Clicks  = ", v.Clicks)
+		fmt.Println("Price  = ", v.Price)
+	}
 
 	// 追加（map形式追加）
 	maps = append(maps, map[string]interface{}{
@@ -103,12 +93,10 @@ func AdvanceMap() {
 
 	for k, v := range outStruct {
 		fmt.Println("========key value =======")
-		fmt.Println("Name k = ", k, v.Name)
-		fmt.Println("CardId k = ", k, v.CardId)
-		fmt.Println("SalesNu k = ", k, v.SalesNu)
-		fmt.Println("Clicks k = ", k, v.Clicks)
-
-		// fmt.Println(outStruct[k].Name)
+		fmt.Println("Name  = ", k, v.Name)
+		fmt.Println("CardId  = ", k, v.CardId)
+		fmt.Println("SalesNu  = ", k, v.SalesNu)
+		fmt.Println("Clicks  = ", k, v.Clicks)
 	}
 
 }
