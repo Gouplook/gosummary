@@ -31,3 +31,8 @@ func TestGenRandom(t *testing.T) {
 	s := GenRandom(11, 123)
 	fmt.Println("ss", s)
 }
+
+func TestVn(t *testing.T) {
+	
+
+}
