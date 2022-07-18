@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // 动态交通计算状态思路:
 
 //速度：
@@ -24,5 +26,36 @@ package main
 
 // 根据500ms周期向后计算，统计出车辆的位置，车辆在道路上的数量，
 
+// 车辆节点信息
 type CarsNode struct {
+	CarId     int     // 车辆编号
+	CarType   int     // 车辆类型  0=AGV...
+	Lng       float64 // 位置经度
+	Lat       float64 // 位置维度
+	Theta     float64 // 位置角度
+	Speed     float64 // 车速
+	TimeStamp int64   // 时间戳
+}
+
+type LaneBody struct {
+	Number     int      // 车辆数量len（head）
+	FlowMax    int      // 最大通行量（车辆数）
+	Lanelength float64  //路段长度
+	Head       *CarBody //
+}
+
+type CarBody struct {
+	Speed float64 // 当前速度
+	Stops int     // 停车次数
+	// ...... 基于车辆的其它指标
+	History []CarsNode // 缓存历史上报点位置；维护定长区域(优化速度计算)
+	Next    *CarBody
+}
+
+func main() {
+	var LaneArray []LaneBody
+	var Cycle []LaneBody
+
+	fmt.Println(LaneArray)
+	fmt.Println(Cycle)
 }
