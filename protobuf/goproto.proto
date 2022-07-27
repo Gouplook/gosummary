@@ -1,0 +1,33 @@
+syntax = "proto3";
+import "base.proto";
+// 分号前是路径，后面是文件名
+option go_package = "./pb;hello";
+
+
+
+
+message  SearchRequest {
+  string  query = 1;
+  double  amount =2; // go --float64
+  int32 page_number =3;
+  enum Corpus {
+    UNIVERSAL  = 0; // 必须有0值，这样我们就可以将0作为枚举的默认值
+    WEB = 1;
+  }
+  Corpus corpus = 4; //
+
+}
+
+message  Result {
+  string  url = 1;
+  string title =2;
+  repeated  string snippets =3;  // 重复的
+}
+
+
+service  SearchService {
+  rpc Search (SearchRequest) returns (Result);
+}
+
+//protoc --go_out=./ .\goproto.proto
+

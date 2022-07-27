@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+
+package  base;
+option go_package="./pb";
+
+
+message Trip {
+  string start =1;
+  string end = 2;
+}
