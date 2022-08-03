@@ -1,3 +1,4 @@
+// 稀疏数组
 package main
 
 import "fmt"

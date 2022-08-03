@@ -68,7 +68,6 @@ func main() {
 			if err != nil {
 				fmt.Println(err.Error())
 			} else {
-
 				fmt.Println("加入队列ok")
 			}
 		case "get":
@@ -84,4 +83,5 @@ func main() {
 			os.Exit(0)
 		}
 	}
+
 }
