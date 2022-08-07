@@ -46,3 +46,52 @@ func AAinterface() {
 	mokeny.Flying()
 	mokeny.Swimming()
 }
+
+// 接口
+type Usb interface {
+	Start()
+	Stop()
+}
+
+type Phone struct {
+	name string
+}
+
+func (p *Phone) Start() {
+	fmt.Println("Phone 实现Start 接口......")
+}
+
+func (p *Phone) Stop() {
+	fmt.Println("Phone 实现Stop 接口......")
+}
+
+func (p *Phone) Call() {
+	fmt.Println("Phone 自定义call 方法")
+}
+
+type Camera struct {
+	name string
+}
+
+func (c *Camera) Start() {
+	fmt.Println("Camera 实现Start 接口......")
+}
+
+func (c *Camera) Stop() {
+	fmt.Println("Camera 实现Stop 接口......")
+}
+
+type Computer struct {
+}
+
+func (c *Computer) Working(usb Usb) {
+	usb.Stop()
+	usb.Start()
+
+	if phone, ok := usb.(*Phone); ok {
+		phone.Call()
+	}
+	fmt.Println("working.......")
+}
+
+// 类型断言

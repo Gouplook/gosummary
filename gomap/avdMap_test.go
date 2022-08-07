@@ -108,3 +108,7 @@ func TestMapToStruct2(t *testing.T) {
 func TestStructToMap(t *testing.T) {
 	StructToMap()
 }
+
+func TestDoubleMap(t *testing.T) {
+	DoubleMap()
+}

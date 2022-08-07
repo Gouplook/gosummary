@@ -84,3 +84,19 @@ func SliceContains(a, b []int) {
 	fmt.Println(bytes.Contains(aa, bb))
 
 }
+
+func StringMode() {
+	str := "Hello@163.com" // Zello@163.com
+	fmt.Println("Mode before.....", str)
+	// string是一个切片
+	for k, v := range str {
+		fmt.Println(k)
+		fmt.Println(v)
+	}
+	arr := []byte(str)
+	arr[0] = 'Z'
+	str = string(arr)
+
+	fmt.Println("Mode after.....", str)
+
+}
