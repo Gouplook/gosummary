@@ -111,6 +111,7 @@ func AdvMapMap() {
 	maps["001"] = make(map[string]interface{})
 	maps["001"] = map[string]interface{}{
 		"name": "Linux",
+		"sex":  "M",
 	}
 	maps["002"] = make(map[string]interface{})
 	maps["002"] = map[string]interface{}{
@@ -315,4 +316,23 @@ func StructToMap() {
 	fmt.Println("m : ", m)
 	data, _ := json.Marshal(m)
 	fmt.Println(string(data))
+}
+
+func DoubleMap() {
+	var student map[string]map[string]string
+
+	student = make(map[string]map[string]string)
+	student["001"] = make(map[string]string)
+	student["001"]["name"] = "tom"
+	student["001"]["sex"] = "M"
+	student["001"]["sex2"] = "M"
+	student["001"]["sex3"] = "M"
+
+	fmt.Println(student)
+	student = make(map[string]map[string]string)
+	fmt.Println(student)
+}
+
+func MapSlice() {
+
 }

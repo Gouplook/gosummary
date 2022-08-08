@@ -33,15 +33,18 @@ func TestSliceContains(t *testing.T) {
 	SliceContains(a, b)
 }
 
-func Test_BB(t *testing.T){
+func Test_BB(t *testing.T) {
 
-	m := []int {1,33,66,12}
-	ms := make([]string,0)
-	for _,v := range m{
+	m := []int{1, 33, 66, 12}
+	ms := make([]string, 0)
+	for _, v := range m {
 		str := strconv.Itoa(v)
-		ms = append(ms,str)
+		ms = append(ms, str)
 	}
 	fmt.Println(ms)
-	fmt.Println(strings.Join(ms,","))
+	fmt.Println(strings.Join(ms, ","))
+}
 
+func TestStringMode(t *testing.T) {
+	StringMode()
 }

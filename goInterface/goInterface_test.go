@@ -17,3 +17,26 @@ func TestPerson_Greet(t *testing.T) {
 	p.Greet()
 
 }
+
+func TestWorking(t *testing.T) {
+	phone := new(Phone)
+	camera := Camera{}
+	computer := new(Computer)
+
+	computer.Working(phone)
+	computer.Working(&camera)
+
+	var u Usb = phone
+	var c Usb = &camera
+	u.Stop()
+	c.Start()
+
+	// 多态数组
+	var useArr [3]Usb
+	useArr[0] = &Phone{"vivo"}
+	useArr[1] = &Phone{"hawei"}
+	useArr[2] = &Camera{"vivo"}
+
+	fmt.Println(useArr[0])
+
+}
