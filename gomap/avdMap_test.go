@@ -112,3 +112,11 @@ func TestStructToMap(t *testing.T) {
 func TestDoubleMap(t *testing.T) {
 	DoubleMap()
 }
+
+func TestMapSlice(t *testing.T) {
+	MapSlice()
+}
+
+func TestMapSliceStruct(t *testing.T) {
+	MapSliceStruct()
+}

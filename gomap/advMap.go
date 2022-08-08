@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"github.com/mitchellh/mapstructure"
 	"log"
+	"sort"
 )
 
 type CardBase struct {
@@ -333,6 +334,51 @@ func DoubleMap() {
 	fmt.Println(student)
 }
 
+type Cars struct {
+	Name string
+	Age  int
+}
+
 func MapSlice() {
 
+	var sliceMap map[string][]string
+	sliceMap = make(map[string][]string, 3)
+	key := "1"
+	value, ok := sliceMap[key]
+	if !ok {
+		value = make([]string, 0, 2)
+	}
+	value = append(value, "北京", "上海")
+	sliceMap[key] = value
+	fmt.Println(sliceMap)
+}
+
+func MapSliceStruct() {
+	var sliceStruct map[string][]Cars
+	sliceStruct = make(map[string][]Cars)
+	key := "123"
+	value, ok := sliceStruct[key]
+	if !ok {
+		value = make([]Cars, 0)
+	}
+	value = append(value, Cars{
+		Name: "ZS",
+		Age:  18,
+	})
+	value = append(value, Cars{
+		Name: "WS",
+		Age:  48,
+	})
+	value = append(value, Cars{
+		Name: "YS",
+		Age:  28,
+	})
+	sort.Slice(value, func(i, j int) bool {
+		if value[i].Age > value[j].Age {
+			return true
+		}
+		return false
+	})
+	sliceStruct[key] = value
+	fmt.Println(sliceStruct)
 }
