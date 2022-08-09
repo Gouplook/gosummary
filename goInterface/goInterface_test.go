@@ -23,9 +23,15 @@ func TestWorking(t *testing.T) {
 	camera := Camera{}
 	computer := new(Computer)
 
+	fmt.Println("================")
+	phone.Start()
+
+	fmt.Println("================")
 	computer.Working(phone)
 	computer.Working(&camera)
 
+	// 接口，传入什么，就适配什么。
+	// 接口定义好了，任何自定义类型都可以实现接口的方法。
 	var u Usb = phone
 	var c Usb = &camera
 	u.Stop()
@@ -37,6 +43,9 @@ func TestWorking(t *testing.T) {
 	useArr[1] = &Phone{"hawei"}
 	useArr[2] = &Camera{"vivo"}
 
-	fmt.Println(useArr[0])
+	for k, v := range useArr {
+		fmt.Println(k)
+		fmt.Println(v)
+	}
 
 }
