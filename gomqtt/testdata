@@ -1,0 +1,40 @@
+
+lanesF= map[0:map[density:0 flow:2]
+           1:map[density:0 flow:3]
+           2:map[density:0 flow:4]
+           15:map[density:0.25 flow:2]
+           25:map[density:0 flow:5]
+           33:map[density:0 flow:4]
+           56:map[density:0 flow:3]
+           73:map[density:0 flow:5]
+           74:map[density:0.4166666666666667 flow:5]]
+carsF= map[:map[speed:NaN stop:1]
+       101:map[speed:0.22799937681106328 stop:1]
+       102:map[speed:0.22230266579935412 stop:1]
+       103:map[speed:0.21214288077861265 stop:1]
+       104:map[speed:0.2196693451298008 stop:1]
+       105:map[speed:0.23911086220451488 stop:1]]
+relationF= map[0:[] 1:[] 2:[] 15:[101 104] 25:[] 33:[] 56:[] 73:[] 74:[101 102 103 104 105]]
+laneId=15, level=2
+laneId=25, level=0
+laneId=2, level=0
+laneId=0, level=0
+laneId=33, level=0
+laneId=74, level=2
+laneId=73, level=0
+laneId=1, level=0
+laneId=56, level=0
+Lane traffic status display ================ 2022-09-05 13:47:50.7298316 +0800 CST
+laneId=15, level=1
+laneId=25, level=0
+laneId=2, level=0
+laneId=0, level=0
+laneId=33, level=0
+laneId=74, level=2
+laneId=73, level=0
+laneId=1, level=0
+laneId=56, level=0
+
+
+
+

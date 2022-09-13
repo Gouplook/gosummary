@@ -340,7 +340,6 @@ type Cars struct {
 }
 
 func MapSlice() {
-
 	var sliceMap map[string][]string
 	sliceMap = make(map[string][]string, 3)
 	key := "1"

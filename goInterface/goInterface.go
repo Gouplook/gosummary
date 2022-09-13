@@ -47,14 +47,21 @@ func AAinterface() {
 	mokeny.Swimming()
 }
 
+type Data struct {
+	Name string
+	Age  int
+}
+
 // 接口
 type Usb interface {
 	Start()
 	Stop()
+	Rear(data Data)
 }
 
+// 读数据
 type Phone struct {
-	name string
+	cache []Data
 }
 
 func (p *Phone) Start() {
@@ -69,8 +76,14 @@ func (p *Phone) Call() {
 	fmt.Println("Phone 自定义call 方法")
 }
 
+func (p *Phone) Rear(data Data) {
+	//
+
+}
+
+// 写数据
 type Camera struct {
-	name string
+	data Data
 }
 
 func (c *Camera) Start() {

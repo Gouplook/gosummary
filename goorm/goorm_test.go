@@ -207,3 +207,9 @@ func TestGoModelSelectsLike(t *testing.T) {
 	fmt.Println(rs)
 	//logs.Info(string(rr))
 }
+
+func TestVV(t *testing.T) {
+	var str = `lane= %v,lat= %v`
+
+	fmt.Sprintf(str, 3.5, "xx")
+}

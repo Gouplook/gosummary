@@ -33,6 +33,6 @@ func TestGenRandom(t *testing.T) {
 }
 
 func TestVn(t *testing.T) {
-	
+	offset := 0
 
 }

@@ -48,3 +48,7 @@ func Test_BB(t *testing.T) {
 func TestStringMode(t *testing.T) {
 	StringMode()
 }
+
+func TestMapSlice(t *testing.T) {
+	MapSlice()
+}

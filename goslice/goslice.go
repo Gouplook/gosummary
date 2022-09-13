@@ -100,3 +100,20 @@ func StringMode() {
 	fmt.Println("Mode after.....", str)
 
 }
+
+func MapSlice() {
+	var cars = map[int64][]string{}
+	cars[123] = []string{"1", "4"}
+	cars[125] = []string{"24", "64", "89"}
+	for k, v := range cars {
+		fmt.Println(k)
+		fmt.Println(v)
+	}
+
+	var flowNum map[int64]int
+	flowNum = make(map[int64]int)
+	flowNum[123] = 3
+	flowNum[34] = 5
+	fmt.Println(flowNum)
+	fmt.Println(cars)
+}
