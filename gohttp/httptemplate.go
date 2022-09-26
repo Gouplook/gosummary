@@ -16,9 +16,9 @@ import (
 //创建处理器函数
 func templatehandle(w http.ResponseWriter, r *http.Request) {
 	//解析模板文件
-	// t, _ := template.ParseFiles("./httptemplatehtml/index.html")
+	// t, _ := template.ParseFiles("./httptemplatehtml/index2.html")
 	//通过Must函数让Go帮我们自动处理异常  多个参数时，最后一个参数生效
-	t := template.Must(template.ParseFiles("./httptemplatehtml/index.html", "./httptemplatehtml/index2.html"))
+	t := template.Must(template.ParseFiles("./httptemplatehtml/index2.html", "./httptemplatehtml/index2.html"))
 
 	//执行
 	//t.Execute(w, "Hello Template")

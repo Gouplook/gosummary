@@ -7,8 +7,10 @@ import (
 	gomqtt "github.com/eclipse/paho.mqtt.golang"
 	uuid "github.com/satori/go.uuid"
 	"io/ioutil"
+	"math"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -16,6 +18,20 @@ import (
 
 var (
 	MqttClient *Client
+	tracking   = `{
+"channel": "tracking",
+"params": {
+	"loc": {
+		"state": 3,
+		"lat": %v,
+		"lon": %v
+	},
+	"theta": %v
+},
+"vin": "%v",
+"timestamp": %v,
+"name": "%v"
+}`
 )
 
 func Init(addr string) {
@@ -160,23 +176,16 @@ func DataPub(payload string) {
 	}
 }
 
-var tracking = `{
-   "channel": "tracking",
-   "params": {
-      "loc": {
-         "state": 3,
-         "lat": %v,
-         "lon": %v
-      },
-      "theta": %v
-   },
-   "vin": "%v",
-   "timestamp": %v,
-   "name": "%v"
-}`
+type CarData struct {
+	CarId string
+	X     float64
+	Y     float64
+	T     float64
+}
 
-func fileReader(path string) {
+func fileReader(path string) (map[string][]CarData, float64) {
 	file, err := os.OpenFile(path, 0, 0777)
+
 	if err != nil {
 		panic(err.Error())
 	}
@@ -185,19 +194,21 @@ func fileReader(path string) {
 		panic(err.Error())
 	}
 	lanes := strings.Split(string(datas), "\n")
-	fmt.Println(lanes)
 	re := regexp.MustCompile(`carId=([^,]+),xl=([^,]+),yl=([^,]+),timesstmap\s*=([^,]+)`)
+	res := map[string][]CarData{}
+
+	minTime := math.MaxFloat64
 	for _, line := range lanes {
 		if strings.TrimSpace(line) == "" {
 			//fmt.Println("read space line from file.")
 			continue
 		}
 		fields := re.FindStringSubmatch(line)
-
 		if len(fields) < 5 {
 			fmt.Println(fields)
 			fmt.Println("read space field from line.")
 			continue
+			fmt.Println()
 		}
 		carId := strings.TrimSpace(fields[1])
 		x, err := strconv.ParseFloat(strings.TrimSpace(fields[2]), 64)
@@ -210,30 +221,92 @@ func fileReader(path string) {
 			fmt.Println("field y with unexpected type")
 			continue
 		}
-		// 时间根据实时发送生成。
-		// 问题， 时间
 		timestamp, err := strconv.ParseFloat(strings.TrimSpace(fields[4]), 64)
 		if err != nil {
 			fmt.Println("field time with unexpected type")
 			continue
 		}
 		fmt.Println(carId, x, y, timestamp)
-		payload := fmt.Sprintf(tracking,
-			// lat, lon, theta, vin, time, vin
-			y, x, 3.88, carId, timestamp/1e3, carId)
-		DataPub(payload)
-		fmt.Printf("payload:%s", payload)
+		//payload := fmt.Sprintf(tracking,
+		//	// lat, lon, theta, vin, time, vin
+		//	y, x, 3.88, carId, timestamp/1e3, carId)
+		//DataPub(payload)
+		//fmt.Printf("payload:%s", payload)
+		if _, ok := res[carId]; ok {
+			res[carId] = append(res[carId], CarData{
+				CarId: carId, X: x, Y: y, T: timestamp,
+			})
+		} else {
+			res[carId] = make([]CarData, 0, 0)
+			res[carId] = append(res[carId], CarData{
+				CarId: carId, X: x, Y: y, T: timestamp,
+			})
+		}
+		if minTime > timestamp {
+			minTime = timestamp
+		}
 	}
+	return res, minTime
+}
+
+// GetTimestampFloat 获取浮点型时间戳
+func GetTimestampFloat() float64 {
+	return ConvertTime2float64(time.Now())
+}
+
+// ConvertTime2float64 将时间类型转浮点型时间戳
+func ConvertTime2float64(t time.Time) float64 {
+	return float64(t.UnixNano()) / 1e9
 }
 
 var (
-	filePath = flag.String("f", "./carId.yml", "the file path")
+	filePath = flag.String("f", ".\\carId.yaml", "the file path")
 	mqttAddr = flag.String("a", "10.8.0.60:1883", "the address of mqtt")
+	interval = flag.Int64("i", 500, "the interval of mqtt data")
 )
+
+func pubRoutine(datas []CarData, delay, interval int64, sig, over chan struct{}) {
+	<-sig
+	time.Sleep(time.Duration(delay) * time.Millisecond)
+	tt := time.NewTicker(time.Duration(interval) * time.Millisecond)
+	fmt.Printf("start with delay(%v) and interval(%v)\n", delay, interval)
+	for _, cur := range datas {
+		fmt.Printf("%v send one data to mqtt\n", cur.CarId)
+		select {
+		case <-tt.C:
+			// cur := datas[0]
+			payload := fmt.Sprintf(tracking,
+				// lat, lon, theta, vin, time, vin
+				cur.Y, cur.X, 3.88, cur.CarId, GetTimestampFloat(), cur.CarId)
+			DataPub(payload)
+		}
+	}
+	over <- struct{}{}
+}
 
 func main() {
 	// todo: do
 	flag.Parse()
 	Init(*mqttAddr)
-	fileReader(*filePath)
+	datas, mint := fileReader("D:\\gosummaryCode\\gosummary\\gomqtt\\carId.yaml")
+	sigs := make([]chan struct{}, 0)
+	overs := make([]chan struct{}, 0)
+	for _, v := range datas {
+		single := make(chan struct{})
+		over := make(chan struct{})
+		// 排序
+		sort.Slice(v, func(i, j int) bool {
+			return v[i].T < v[j].T
+		})
+		go pubRoutine(v, int64(v[0].T-mint), *interval, single, over)
+		sigs = append(sigs, single)
+		overs = append(overs, over)
+	}
+	for _, s := range sigs {
+		s <- struct{}{}
+	}
+	//time.Sleep(1 * time.Second)
+	for _, o := range overs {
+		<-o
+	}
 }

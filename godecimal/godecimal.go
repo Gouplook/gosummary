@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"math"
 	"os"
-	"regexp"
+	"sort"
 	"strings"
 	"time"
 )
@@ -130,10 +130,9 @@ func Location() {
 	//d3 := 0.4 * 0.5
 	// 5+
 	//
-	// 思路：模拟数据发送。n台车，如何模拟间隔发送。
 	// 101 车出发时间：9:25:31
-	// 102 车出发时间：9:25:39    // 相隔8s
-	// 103 车出发时间：9:26:3    //  32s
+	// 102 车出发时间：9:25:39     // 相隔8s
+	// 103 车出发时间：9:26:3     //  32s
 	// 104 车出发时间：9:26:10   //  39s
 	// 105 车出发时间：9:26:21  //  50s
 
@@ -162,31 +161,56 @@ func TimeStamp() {
 
 func MouNiShu() {
 	// 从生成的数据里，给每条记录加上(当前时间）时间戳。
-	fileName := "./101.yaml"
+	fileName := "./carId.yaml"
+	//fileName01 := "./102.yaml"
+	//fileName02 := "./103.yaml"
+	//fileName03 := "./104.yaml"
+
 	file, err := os.OpenFile(fileName, 0, 0777)
+	//file1, err := os.OpenFile(fileName01, 0, 0777)
+	//file2, err := os.OpenFile(fileName02, 0, 0777)
+	//file3, err := os.OpenFile(fileName03, 0, 0777)
 	if err != nil {
 		fmt.Println("file Open failed .....")
 	}
 
 	datas, err := ioutil.ReadAll(file)
+	//datas1, err := ioutil.ReadAll(file1)
+	//datas2, err := ioutil.ReadAll(file2)
+	//datas3, err := ioutil.ReadAll(file3)
+
 	lanes := strings.Split(string(datas), "\n")
-	fmt.Println(len(lanes)) //
-	re := regexp.MustCompile(`carId=([^,]+),xl=([^,]+),yl=([^,]+),timesstmap\s*=([^,]+)`)
+	//lanes1 := strings.Split(string(datas1), "\n")
+	//lanes2 := strings.Split(string(datas2), "\n")
+	//lanes3 := strings.Split(string(datas3), "\n")
+	//fmt.Println(len(lanes)) //
+	//fmt.Println(len(lanes1)) //
+	//fmt.Println(len(lanes2)) //
+	//fmt.Println(len(lanes3)) //
+	sort.Strings(lanes)
+	//re := regexp.MustCompile(`carId=([^,]+),xl=([^,]+),yl=([^,]+),timesstmap\s*=([^,]+)`)
+
+	for i := 0; i < 4; i++ {
+
+	}
 	for _, lane := range lanes {
 		if strings.TrimSpace(lane) == "" {
 			//fmt.Println("read space line from file.")
 			continue
 		}
+		fmt.Println(lane)
 
-		fields := re.FindStringSubmatch(lane)
+		//fields := re.FindStringSubmatch(lane)
 		time.Sleep(time.Second / 2)
 		//fmt.Println(fields)
-		timeStamp := strings.TrimSpace(fields[4])
-		timeStamp = "0094"
+		//timeStamp := strings.TrimSpace(fields[4])
+
+		//milliseconds
+		//timeStamp = strconv.FormatInt(time.Now().Local().Unix(), 10)
+		//
 
 		// 定时发送。
-
-		fmt.Println(timeStamp)
+		//fmt.Println(timeStamp)
 
 	}
 
