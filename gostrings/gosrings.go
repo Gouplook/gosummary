@@ -125,3 +125,13 @@ func GoStrings() {
 	b = strings.HasPrefix("ftp://192.168.10.1", "hsp") //true
 	fmt.Printf("b=%v\n", b)
 }
+
+func GoStrings2() {
+	b := strings.HasPrefix("ftp://192.168.10.1", "ftp") //true
+	arr := strings.Split("ftp://192.168.10.1", ":")
+	// 链接两个字符串，以sep隔开
+	s := strings.Join(arr[0:], ":") //ftp://192.168.10.1
+	fmt.Printf("b=%v\n", b)
+	fmt.Println(arr)
+	fmt.Println(s)
+}
