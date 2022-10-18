@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"
@@ -19,10 +18,19 @@ func main() {
 	app.Logger().SetLevel("debug")
 
 	//3.注册模板
-
+	// D:\gosummaryCode\gosummary\goiris\backend\web\views
+	tmplate := iris.HTML("./backend/web/views", ".html").Layout("shared/layout.html").Reload(true)
+	app.RegisterView(tmplate)
 	//4.设置模板目标
+	app.HandleDir("/assets", "./backend/web/assets")
 
 	//出现异常跳转到指定页面
+	app.OnAnyErrorCode(func(ctx iris.Context) {
+		ctx.ViewData("message", ctx.Values().GetStringDefault("message", "访问的页面出错！"))
+		ctx.ViewLayout("")
+		ctx.View("shared/error.html")
+		// D:\gosummaryCode\gosummary\goiris\backend\web\views\shared
+	})
 
 	//连接数据库
 	db, err := common.NewMysqlConn()
@@ -31,9 +39,6 @@ func main() {
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-
-	fmt.Println(db)
-	fmt.Println(ctx)
 
 	//5.注册控制器
 	productRepository := repositories.NewProductManger("product", db)
@@ -45,6 +50,6 @@ func main() {
 
 	//6.启动服务
 	app.Run(
-		iris.Addr("localhost:8080"))
+		iris.Addr("localhost:8083"))
 
 }
