@@ -163,14 +163,55 @@ func SlieIn2() {
 }
 
 func MapMap() {
-	mp := make(map[int]map[int]int)
+	level := map[int]int{}
+	//mp := make(map[int]map[int]int)
+	mp := map[int]map[int]int{}
+	mp[22] = make(map[int]int)
+	mp[23] = make(map[int]int)
+	mp[24] = make(map[int]int)
 
-	mp[1][2] = 102
-	mp[2][5] = 205
-	mp[6][2] = 602
-	mp[6][2] = 703
+	mp[22][1] = 2
+	mp[22][0] = 1
+	mp[22][2] = 0
 
+	mp[23][0] = 1
+	mp[23][2] = 5
+	mp[23][1] = 2
+
+	mp[24][0] = 1
+	mp[24][1] = 2
+	mp[24][2] = 0
+
+	fmt.Println("before-", mp)
+	if value, ok := mp[23][1]; ok {
+		fmt.Println("value", value)
+		mp[23][1] += 1
+	} else {
+		mp[23][1] = 1
+	}
 	fmt.Println(mp)
+	type temp struct {
+		key   int
+		value int
+	}
+
+	tempList := make([]temp, 0)
+	// map[22:map[0:1 1:2 2:0] 23:map[0:1 1:3 2:0] 24:map[0:1 1:2 2:0]]
+	// 找出22 里面最大可以
+	for k, v := range mp {
+		for k2, va := range v {
+			tempList = append(tempList, temp{
+				key:   k2,
+				value: va,
+			})
+		}
+		sort.Slice(tempList, func(i, j int) bool {
+			return tempList[i].value > tempList[j].value
+		})
+		level[k] = tempList[0].key
+	}
+
+	fmt.Println("level= ", level)
 
 }
 

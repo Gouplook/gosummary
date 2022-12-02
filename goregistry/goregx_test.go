@@ -16,3 +16,8 @@ func TestPhoneRegx(t *testing.T) {
 	phone := "0411-83613910"
 	PhoneRegx(phone)
 }
+
+func TestMatching(t *testing.T) {
+	//Matching()
+	Match()
+}

@@ -96,3 +96,29 @@ func IoutilFileWrite(name string) {
 		panic(err)
 	}
 }
+
+// 写入文件
+func WriteFile() {
+	file, err := os.Create("abc.txt")
+	if err != nil {
+		fmt.Println("文件创建失败")
+	}
+	defer file.Close()
+	writer := bufio.NewWriter(file)
+	//n, err := writer.WriteString("func LimitReader(r Reader, n int64) Reader11209871")
+	// 注意：
+	// 因为writer是带缓存，因此在调用WriterString方法时，其实
+	// 内容是先写入到缓存的,所以需要调用Flush方法，将缓冲的数据
+	// 真正写入到文件中， 否则文件中会没有数据!!!
+
+	out1 := ""
+	for i := 0; i < 5; i++ {
+		out := fmt.Sprintf("lane=%d\n", i)
+		out1 += out
+	}
+	fmt.Println(out1)
+
+	writer.WriteString(out1)
+	err = writer.Flush()
+
+}

@@ -52,3 +52,38 @@ func PhoneRegx(phone string) {
 	}
 
 }
+
+// 匹配最后字符
+func Matching() {
+	carType := map[int64][]string{}
+	// 287762808832:[situ_t
+	//est.car6 situ_test.car14]
+	carType[12] = []string{"situ_test.car14", "situ_test.car3"}
+	carType[10] = []string{"situ_test.car10", "situ_test.car13"}
+	for _, v := range carType {
+		a := "^situ_test\\.car[0-4]$"
+		reg := regexp.MustCompile(a)
+
+		for _, v1 := range v {
+			str := reg.MatchString(v1)
+			if str {
+				fmt.Println("A")
+			}
+		}
+
+	}
+}
+
+func Match() {
+	a := 1
+	low := 1
+	if low > a/2 {
+		fmt.Println(a / 2)
+		fmt.Println("拥堵===")
+	} else if low > a/3 {
+		fmt.Println(a / 3)
+		fmt.Println("缓慢===")
+	} else {
+		fmt.Println("不拥堵===")
+	}
+}

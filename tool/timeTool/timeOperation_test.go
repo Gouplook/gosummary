@@ -14,7 +14,15 @@ import (
 )
 
 func TestBasicTime(t *testing.T) {
-	BasicTime()
+	//BasicTime()
+	l := 549755813888
+
+	fmt.Println("SegId= ", l>>32)
+	fmt.Println("Id= ", l<<32>>32)
+
+	SegId := 14
+	id := 0
+	fmt.Println("laneId=", SegId<<32|id)
 }
 
 func TestTimeRange(t *testing.T) {

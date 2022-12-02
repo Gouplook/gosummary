@@ -48,7 +48,7 @@ func BasicTime() {
 	now := time.Now()
 	local := time.Now().Local()
 	timestmap := time.Now().Local().Unix()
-	localFroml := time.Now().Local().Format("2006-01-02") // time --> string
+	localFroml := time.Now().Local().Format("2006-01-02-15:04:05") // time --> string
 	nowForml := now.Format("2006-01")
 
 	// string -> time
@@ -59,12 +59,13 @@ func BasicTime() {
 	fmt.Println("now time: ", now)
 	fmt.Println("local time: ", local)
 	fmt.Println("timestmap: ", timestmap)
-	fmt.Println("localFroml: ", localFroml)
+	fmt.Println("localFroml=: ", localFroml)
 	fmt.Println("nowForml: ", nowForml)
 	fmt.Println("strToTime: ", strToTime)
 	fmt.Println("stamp", stamp.Unix()) // 转化成int
 	// 4m/s
 	fmt.Println()
+
 }
 
 // 获取当天时间段 ：2020-12-14 00:00:00~2020-12-14 23:59:59

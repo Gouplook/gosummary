@@ -49,3 +49,7 @@ func TestIoutilFileWrite(t *testing.T) {
 	fmt.Println("hello world.......")
 	t.Log("122222....")
 }
+
+func TestWriteFile(t *testing.T) {
+	WriteFile()
+}

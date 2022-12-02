@@ -23,5 +23,10 @@ func TestStructAndSlice(t *testing.T) {
 // 继承
 
 func TestStructAndMap(t *testing.T) {
-	sStructAndSlice()
+	//sStructAndSlice()
+	StructAndMap()
+}
+
+func TestMaptoMap(t *testing.T) {
+	MaptoMap()
 }

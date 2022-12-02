@@ -75,5 +75,28 @@ func StructAndMap() {
 	}
 	fmt.Println(m[1])
 	fmt.Println(m[1].name)
+	m[2] = Student{
+		1013,
+		"wang-1",
+		50,
+		"shanghai-2",
+	}
+	fmt.Println(m[2].name)
 
+}
+func maptotomap(ls map[int64]float64) {
+	for laneId, speed := range ls {
+		fmt.Println(laneId)
+		fmt.Println(speed)
+	}
+}
+
+func MaptoMap() {
+	laneSpeed := make(map[int64]float64)
+
+	laneSpeed[22] = 23.6
+	laneSpeed[24] = 213.6
+	laneSpeed[25] = 203.6
+
+	maptotomap(laneSpeed)
 }
