@@ -2,25 +2,29 @@ package gostrings
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 )
 
 func TestGoStrings2(t *testing.T) {
-	GoStrings2()
-	s := "e200.situ.car9"
-	index := strings.Index(s, ".") // 4
+	//GoStrings2()
+	//s := "e200.situ.car9"
+	//index := strings.Index(s, ".") // 4
+	//
+	//str := s[0:index]
+	//switch str {
+	//case "e100":
+	//	fmt.Println("A")
+	//case "e200":
+	//	fmt.Println("b")
+	//default:
+	//	fmt.Println("....")
+	//}
 
-	str := s[0:index]
-	switch str {
-	case "e100":
-		fmt.Println("A")
-	case "e200":
-		fmt.Println("b")
-	default:
-		fmt.Println("....")
-	}
+	//fmt.Println(str)
+	laneId := 1000727379968
+	fmt.Printf("seg_id=%d,lane_id=%d\n", laneId>>32, laneId<<32>>32)
 
-	fmt.Println(str)
+	//b := strings.Contains("e200.situ.car10", "situ")
+	//fmt.Printf("b=%v\n", b)
 
 }
