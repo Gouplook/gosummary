@@ -18,7 +18,8 @@ func test02(arr *[3]int) {
 func main() {
 
 	// add git
-	fmt.Println("git")
+	fmt.Println("git mode")
+	fmt.Println("test")
 
 	//
 	//1)创建一个byte类型的26个元素的数组，分别 放置'A'-'Z‘。
