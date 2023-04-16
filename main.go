@@ -4,18 +4,22 @@ import (
 	"fmt"
 )
 
-//函数
+// 函数
 func test01(arr [3]int) {
 	arr[0] = 88
 }
 
-//函数
+// 函数
 func test02(arr *[3]int) {
 	fmt.Printf("arr指针的地址=%p", &arr)
 	(*arr)[0] = 88 //!!
 }
 
 func main() {
+
+	// add git
+	fmt.Println("git")
+
 	//
 	//1)创建一个byte类型的26个元素的数组，分别 放置'A'-'Z‘。
 	//使用for循环访问所有元素并打印出来。提示：字符数据运算 'A'+1 -> 'B'
