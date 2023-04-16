@@ -20,6 +20,7 @@ func main() {
 	// add git
 	fmt.Println("git mode")
 	fmt.Println("test")
+	fmt.Println("test2")
 
 	//
 	//1)创建一个byte类型的26个元素的数组，分别 放置'A'-'Z‘。
