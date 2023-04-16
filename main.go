@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-//函数
+// 函数
 func test01(arr [3]int) {
 	arr[0] = 88
 }
 
-//函数
+// 函数
 func test02(arr *[3]int) {
 	fmt.Printf("arr指针的地址=%p", &arr)
 	(*arr)[0] = 88 //!!
@@ -139,8 +139,7 @@ func handlerSum(handler sumable, a, b int) int {
 }
 
 func main() {
-	//newFunc1 := myFunc(sum10)
-	//newFunc2 := myFunc(sum100)
+
 	//
 	//handlerSum(newFunc1, 1, 1) // 20
 	//handlerSum(newFunc2, 1, 1) // 200
