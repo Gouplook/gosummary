@@ -22,3 +22,7 @@ func TestJsonMarshalBySile(t *testing.T) {
 func TestJsonUnmarshal(t *testing.T) {
 	JsonUnmarshal()
 }
+
+func TestJO(t *testing.T) {
+	JO()
+}

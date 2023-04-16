@@ -60,6 +60,6 @@ func NewLaneMap(c Config) *LaneMap {
 		config: c,
 		lock:   sync.RWMutex{},
 		lanes:  map[int64]*LaneBody{},
-		cars:   NewCarMap(),
+		cars:   NewCarMap(c),
 	}
 }

@@ -21,10 +21,13 @@ func TestGoStrings2(t *testing.T) {
 	//}
 
 	//fmt.Println(str)
-	laneId := 1000727379968
-	fmt.Printf("seg_id=%d,lane_id=%d\n", laneId>>32, laneId<<32>>32)
+	//laneId := 1000727379968 //
+	//fmt.Printf("seg_id=%d,lane_id=%d\n", laneId>>32, laneId<<32>>32)
 
 	//b := strings.Contains("e200.situ.car10", "situ")
 	//fmt.Printf("b=%v\n", b)
+
+	s := fmt.Sprintf("waypoints(%v) can", 1)
+	fmt.Println(s)
 
 }

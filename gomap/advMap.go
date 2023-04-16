@@ -422,3 +422,5 @@ func MapSliceStruct() {
 	sliceStruct[key] = value
 	fmt.Println(sliceStruct)
 }
+
+func Lat(x fl)

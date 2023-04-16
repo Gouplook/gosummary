@@ -12,3 +12,7 @@ import "testing"
 func TestFileBufio(t *testing.T) {
 	FileBufio()
 }
+
+func TestDir(t *testing.T) {
+	Dir()
+}

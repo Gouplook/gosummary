@@ -30,3 +30,7 @@ func TestStructAndMap(t *testing.T) {
 func TestMaptoMap(t *testing.T) {
 	MaptoMap()
 }
+
+func TestSet(t *testing.T) {
+	SetStruct()
+}

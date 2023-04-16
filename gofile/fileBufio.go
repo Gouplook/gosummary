@@ -10,7 +10,9 @@ package gofile
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
+	"path"
 )
 
 func FileBufio() {
@@ -26,4 +28,14 @@ func FileBufio() {
 	if err == nil {
 		fmt.Printf("The input was: %s\n", input)
 	}
+}
+
+func Dir() {
+	var dir string = string("./test/case")
+	finfo, _ := ioutil.ReadDir(dir)
+	for _, v := range finfo {
+		filenameWithSuffix := path.Base(v.Name())
+		fmt.Println(filenameWithSuffix)
+	}
+
 }
