@@ -8,6 +8,7 @@
 package gostruct
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -32,5 +33,9 @@ func TestMaptoMap(t *testing.T) {
 }
 
 func TestSet(t *testing.T) {
-	SetStruct()
+	//SetStruct()
+	s := 472446402560
+	fmt.Println(s >> 32)
+	fmt.Println(450971566080 >> 32)
+	fmt.Println(472446402560 >> 32)
 }
