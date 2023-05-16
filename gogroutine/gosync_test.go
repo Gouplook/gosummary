@@ -7,7 +7,6 @@ import (
 )
 
 func TestFactorial(t *testing.T) {
-
 	// 等待goroutine结束
 	wg := sync.WaitGroup{}
 
@@ -47,11 +46,6 @@ func TestSyncMapRW(t *testing.T) {
 	wg.Add(2)
 	go SyncMapWrite(mp, &wg)
 	go SyncMapRead(mp, &wg)
-
 	wg.Wait()
 
 }
-
-// 先查询出来，[]int
-// 在根据两个切片进行对比
-

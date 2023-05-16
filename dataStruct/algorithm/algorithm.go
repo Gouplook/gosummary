@@ -1,4 +1,4 @@
-package goalgorithm
+package main
 
 import (
 	"fmt"
@@ -90,7 +90,7 @@ func lsomorphicNumber_005() {
 
 }
 
-// 6：(1)根据工龄(整数)给员工涨工资(整数),工龄和基本工资通过键盘录入
+// Salary_006 6：(1)根据工龄(整数)给员工涨工资(整数),工龄和基本工资通过键盘录入
 // (2)涨工资的条件如下：
 // [10-15) +5000
 // [5-10) +2500
@@ -102,7 +102,6 @@ func lsomorphicNumber_005() {
 func Salary_006(salaryNum float64) {
 	baseSalary := 3000.0
 	var totalSalary float64
-
 	switch {
 	case salaryNum >= 0.0 && salaryNum < 1.0:
 		totalSalary = baseSalary + 200
@@ -228,14 +227,12 @@ func cycleNum_010(N int, k int) int {
 
 // 11：编写一个函数就地反转一个整型slice中的元素
 func reversal_011(array []int) {
-
 	for i, j := 0, len(array)-1; i < j; i, j = i+1, j-1 {
 		array[i], array[j] = array[j], array[i]
 	}
 
 	for j := 0; j < len(array); j++ {
 		fmt.Printf("%d,", array[j])
-		// fmt.Println(array)
 	}
 
 }
@@ -268,7 +265,7 @@ func salefish_013() {
 	fmt.Println(res)
 }
 
-// 14：从数据库中筛选多条数据 存放[]map[string]interface{} 中，
+// 14：从数据库中筛选多条数据 存放[]map[string]interface{} 中
 //     从[]map[string]interface{}中 筛选出key 信息 存放到map[string]interface{}
 //     在map[string]interface{} 找出需要的key信息，和在另一个数据查找出的数据进行比对。
 //     筛选出新的
@@ -285,7 +282,6 @@ type studentNode struct {
 // list后面插入一个数据
 func insertStudentNode(head *studentNode, newNode *studentNode) {
 	temp := head
-
 	for {
 		if temp.next == nil {
 			break
@@ -297,7 +293,6 @@ func insertStudentNode(head *studentNode, newNode *studentNode) {
 
 // 删除链表
 func delStudentNode(head *studentNode, id int) {
-
 	temp := head
 	flag := false
 
@@ -316,12 +311,10 @@ func delStudentNode(head *studentNode, id int) {
 	} else {
 		fmt.Println("删除的id不存在", id)
 	}
-
 }
 
 // 显示链表
 func listStudentNode(head *studentNode) {
-
 	temp := head
 	if temp.next == nil {
 		fmt.Println("This is empty list...")
@@ -330,37 +323,29 @@ func listStudentNode(head *studentNode) {
 
 	for {
 		fmt.Printf("[%d,%s,%d,%s]", temp.next.no, temp.next.name, temp.next.age, temp.next.sex)
+		//fmt.Printf("[%d,%s,%d,%s]", temp.no, temp.name, temp.age, temp.sex)
 
 		temp = temp.next
+		// head 有数据的
+		//if temp == nil {
+		//	break // 表示list 遍历多结尾了。
+		//}
+		// head 没有数据
 		if temp.next == nil {
-			break // 表示list 遍历多结尾了。
+			break
 		}
 	}
 	fmt.Println()
 
 }
 func main() {
-	// 1 2 3 4 5 6
-	x := palindrome_003("126")
-	fmt.Println(x)
-	isDaffodilNumber(153)
-	lsomorphicNumber_005()
-	// salary_006(40.5)
-	map_007()
-	isMapValueEquality_008()
-	factorial_009()
-	// x := cycleNum_010(5,3)
-	fmt.Println(x)
-
-	slice := []int{1, 10, 48, 52}
-	reversal_011(slice)
-	for i := 0; i < 8; i++ {
-		fmt.Printf(" %d,", isFobonacc_012(i))
+	// 测试链表
+	head := &studentNode{
+		no:   0,
+		name: "lisa0",
+		sex:  "W",
+		age:  25,
 	}
-
-	salefish_013()
-
-	head := &studentNode{}
 	subLisa := &studentNode{
 		no:   1,
 		name: "lisa",
@@ -373,28 +358,8 @@ func main() {
 		sex:  "M",
 		age:  29,
 	}
-	subTom := &studentNode{
-		no:   3,
-		name: "Tom",
-		sex:  "W",
-		age:  19,
-	}
-	subJack := &studentNode{
-		no:   4,
-		name: "Jack",
-		sex:  "M",
-		age:  45,
-	}
-
 	insertStudentNode(head, subLisa)
-
 	insertStudentNode(head, subJim)
-	insertStudentNode(head, subTom)
-	insertStudentNode(head, subJack)
-	fmt.Println("dele before :")
-	listStudentNode(head)
-	delStudentNode(head, 2)
-	fmt.Println("dele after :")
 	listStudentNode(head)
 
 }

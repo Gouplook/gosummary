@@ -10,7 +10,6 @@ type ValNode struct {
 }
 
 func main() {
-
 	//1. 先创建一个原始数组
 	var chessMap [11][11]int
 	chessMap[1][2] = 1 //黑子
@@ -30,7 +29,6 @@ func main() {
 	//(2). 将其放入到对应的切片即可
 
 	var sparseArr []ValNode
-
 	//标准的一个稀疏数组应该还有一个 记录元素的二维数组的规模(行和列，默认值)
 	//创建一个ValNode 值结点
 	valNode := ValNode{
@@ -40,7 +38,6 @@ func main() {
 	}
 
 	sparseArr = append(sparseArr, valNode)
-
 	for i, v := range chessMap {
 		for j, v2 := range v {
 			if v2 != 0 {
@@ -53,7 +50,6 @@ func main() {
 				sparseArr = append(sparseArr, valNode)
 			}
 		}
-
 	}
 
 	//输出稀疏数组

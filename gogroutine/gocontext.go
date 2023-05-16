@@ -7,11 +7,10 @@ import (
 	"time"
 )
 
-// 控制并发goroutine
+// Rpc 控制并发goroutine
 func Rpc(ctx context.Context, url string) error {
 	result := make(chan int)
 	err := make(chan error)
-
 	go func() {
 		// 进行RPC调用，并且返回是否成功，成功通过result传递成功信息，错误通过error传递错误信息
 		isSuccess := true
@@ -37,7 +36,7 @@ func Rpc(ctx context.Context, url string) error {
 	}
 }
 
-// 设置时间停止goroutine
+// DealContext 设置时间停止goroutine
 func DealContext(ctx context.Context) {
 	for {
 		select {
@@ -51,7 +50,7 @@ func DealContext(ctx context.Context) {
 	}
 }
 
-// context 传替value
+// ContextValue context 传替value
 func ContextValue(ctx context.Context) {
 	for {
 		select {

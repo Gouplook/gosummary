@@ -23,7 +23,7 @@ func TestFileStream(t *testing.T) {
 
 // 测试 io 文件读写
 func TestIoFileReadWrite(t *testing.T) {
-	IoFileRead("fileread.txt")
+	//IoFileRead("fileread.txt")
 	name := "filewrite.txt"
 	IoFileWrite(name)
 }
@@ -40,16 +40,4 @@ func TestIoFileCopy(t *testing.T) {
 	dstName := "fileread.txt"
 	srcName := "filewrite.txt"
 	IoFileCopy(dstName, srcName)
-	dstName = "filewrite.txt"
-}
-
-// 测试ioutil写文件
-func TestIoutilFileWrite(t *testing.T) {
-	IoutilFileWrite("filewrite.txt")
-	fmt.Println("hello world.......")
-	t.Log("122222....")
-}
-
-func TestWriteFile(t *testing.T) {
-	WriteFile()
 }

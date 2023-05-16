@@ -18,11 +18,9 @@ func StrLen() {
 	for i := 0; i < len(r); i++ {
 		fmt.Printf("字符=%c\n", r[i])
 	}
-
 }
 
 func StrStrconv() {
-
 	//3: 字符串转整数:	 n, err := strconv.Atoi("12")
 	n, err := strconv.Atoi("123")
 	if err != nil {

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 //定义emp
@@ -11,25 +10,14 @@ type Emp struct {
 	Name string
 	Next *Emp
 }
-
-//方法待定..
-func (this *Emp) ShowMe() {
-	fmt.Printf("链表%d 找到该雇员 %d\n", this.Id%7, this.Id)
-}
-
-//定义EmpLink
-//我们这里的EmpLink 不带表头,即第一个结点就存放雇员
 type EmpLink struct {
 	Head *Emp
 }
 
-//方法待定..
-//1. 添加员工的方法, 保证添加时，编号从小到大
 func (this *EmpLink) Insert(emp *Emp) {
-
 	cur := this.Head   // 这是辅助指针
 	var pre *Emp = nil // 这是一个辅助指针 pre 在cur前面
-	//如果当前的EmpLink就是一个空链表
+	// 如果当前的EmpLink就是一个空链表
 	if cur == nil {
 		this.Head = emp //完成
 		return
@@ -43,7 +31,7 @@ func (this *EmpLink) Insert(emp *Emp) {
 				//找到位置
 				break
 			}
-			pre = cur //保证同步
+			pre = cur //保证同步,置换
 			cur = cur.Next
 		} else {
 			break
@@ -94,6 +82,11 @@ type HashTable struct {
 	LinkArr [7]EmpLink
 }
 
+type HaseTable2 struct {
+	// key 是
+	LinkArr []EmpLink
+}
+
 //给HashTable 编写Insert 雇员的方法.
 func (this *HashTable) Insert(emp *Emp) {
 	//使用散列函数，确定将该雇员添加到哪个链表
@@ -106,6 +99,7 @@ func (this *HashTable) Insert(emp *Emp) {
 func (this *HashTable) ShowAll() {
 	for i := 0; i < len(this.LinkArr); i++ {
 		this.LinkArr[i].ShowLink(i)
+
 	}
 }
 
@@ -119,51 +113,4 @@ func (this *HashTable) FindById(id int) *Emp {
 	//使用散列函数，确定将该雇员应该在哪个链表
 	linkNo := this.HashFun(id)
 	return this.LinkArr[linkNo].FindById(id)
-}
-
-func main() {
-
-	key := ""
-	id := 0
-	name := ""
-	var hashtable HashTable
-	for {
-		fmt.Println("===============雇员系统菜单============")
-		fmt.Println("input 表示添加雇员")
-		fmt.Println("show  表示显示雇员")
-		fmt.Println("find  表示查找雇员")
-		fmt.Println("exit  表示退出系统")
-		fmt.Println("请输入你的选择")
-		fmt.Scanln(&key)
-		switch key {
-		case "input":
-			fmt.Println("输入雇员id")
-			fmt.Scanln(&id)
-			fmt.Println("输入雇员name")
-			fmt.Scanln(&name)
-			emp := &Emp{
-				Id:   id,
-				Name: name,
-			}
-			hashtable.Insert(emp)
-		case "show":
-			hashtable.ShowAll()
-		case "find":
-			fmt.Println("请输入id号:")
-			fmt.Scanln(&id)
-			emp := hashtable.FindById(id)
-			if emp == nil {
-				fmt.Printf("id=%d 的雇员不存在\n", id)
-			} else {
-				//编写一个方法，显示雇员信息
-				emp.ShowMe()
-			}
-
-		case "exit":
-			os.Exit(0)
-		default:
-			fmt.Println("输入错误")
-		}
-	}
-
 }

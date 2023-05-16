@@ -10,6 +10,7 @@ func Test_mode(t *testing.T) {
 	operator := Operator{}
 	operator.setStrategy(&add{})
 	rs := operator.calculate(1, 2)
+
 	fmt.Println(rs)
 
 	operator.setStrategy(&reduce{})

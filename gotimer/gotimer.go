@@ -5,11 +5,28 @@ import (
 	"time"
 )
 
-func main() {
-	tiker := time.NewTimer(3 * time.Second)
+// 一次性定时器
+func newTimer() {
+	timer := time.NewTimer(2 * time.Second)
+	<-timer.C
+	fmt.Println("Timer expired!")
+}
 
-	fmt.Printf("timerType ", tiker)
-	fmt.Println(time.Now())
-	c := <-tiker.C
-	fmt.Println(c)
+// 周期行定时器
+func newTicker() {
+	ticker := time.NewTicker(time.Second)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			fmt.Println("tick")
+		}
+	}
+}
+func main() {
+	//
+	//newTimer()
+
+	newTicker()
 }

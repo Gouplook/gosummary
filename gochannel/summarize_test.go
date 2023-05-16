@@ -37,11 +37,10 @@ func TestFactorial(t *testing.T) {
 
 // 测试素数
 func TestPrimeNum(t *testing.T) {
-	intChan := make(chan int, 1000)
+	intChan := make(chan int, 8000)
 	primeChan := make(chan int, 20000) //放入结果
 	// 标识退出的管道
 	exitChan := make(chan bool, 8) // 4个
-
 	start := time.Now().Unix()
 	// 开启一个协程，向 intChan放入 1-8000个数'
 	go PutNum(intChan, 100)
@@ -49,7 +48,7 @@ func TestPrimeNum(t *testing.T) {
 	for i := 0; i < 8; i++ {
 		go PrimeNum(intChan, primeChan, exitChan)
 	}
-
+	fmt.Println(exitChan)
 	go func() {
 		for i := 0; i < 8; i++ {
 			<-exitChan

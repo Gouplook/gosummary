@@ -28,7 +28,7 @@ func Factorial(n int, wg *sync.WaitGroup) {
 	wg.Done()
 }
 
-// 读写锁
+// ReadLock 读写锁
 // 读锁会阻塞写入数据，不影响其他goroutine读操作。（写同理）
 func ReadLock(lock *sync.RWMutex) {
 	lock.RLock()

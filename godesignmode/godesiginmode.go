@@ -21,7 +21,6 @@ func (*reduce) do(a, b int) int {
 
 type Operator struct {
 	strategy IStrategy
-	//IStrategy
 }
 
 // 设置策略(用接口来接受）

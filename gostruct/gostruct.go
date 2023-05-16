@@ -93,7 +93,6 @@ func maptotomap(ls map[int64]float64) {
 
 func MaptoMap() {
 	laneSpeed := make(map[int64]float64)
-
 	laneSpeed[22] = 23.6
 	laneSpeed[24] = 213.6
 	laneSpeed[25] = 203.6

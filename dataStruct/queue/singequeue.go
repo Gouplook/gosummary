@@ -14,7 +14,6 @@ type Queue struct {
 }
 
 func (q *Queue) AddQueue(val int) (err error) {
-
 	if q.Rear == q.MaxSize-1 {
 		fmt.Println("Queue full....")
 		return errors.New("queue full...")
@@ -26,7 +25,6 @@ func (q *Queue) AddQueue(val int) (err error) {
 }
 
 func (q *Queue) GetQueue() (val int, err error) {
-
 	if q.Front == q.Rear {
 		return -1, errors.New("queue empty...")
 	}
@@ -83,5 +81,4 @@ func main() {
 			os.Exit(0)
 		}
 	}
-
 }

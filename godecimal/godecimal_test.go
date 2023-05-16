@@ -18,14 +18,3 @@ func TestDistanceBetween(t *testing.T) {
 	fmt.Printf("%fkm", dis)
 
 }
-
-func TestDistance(t *testing.T) {
-	//Distance()
-	//Distance(0, 0, 0)
-	Location()
-}
-
-func TestTimeStamp(t *testing.T) {
-	//TimeStamp()
-	MouNiShu()
-}
