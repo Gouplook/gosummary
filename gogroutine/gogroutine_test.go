@@ -1,8 +1,10 @@
 package gogroutine
 
 import (
+	"fmt"
 	"sync"
 	"testing"
+	"time"
 )
 
 func TestNumcpu(t *testing.T) {
@@ -14,6 +16,11 @@ var (
 	lock    sync.Mutex
 )
 
-func Ggogroutine(n int) {
+func TestGgogroutine(t *testing.T) {
+
+	go Spinner(100 * time.Millisecond)
+	const n = 25
+	fibN := Fib(n) // slow
+	fmt.Printf("\rFibonacci(%d) = %d\n", n, fibN)
 
 }

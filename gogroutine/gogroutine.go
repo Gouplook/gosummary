@@ -3,6 +3,7 @@ package gogroutine
 import (
 	"fmt"
 	"runtime"
+	"time"
 )
 
 //gogroutine 特点
@@ -23,4 +24,24 @@ import (
 func Numcpu() {
 	numCpu := runtime.NumCPU
 	fmt.Println("CPU num := ", numCpu())
+}
+
+
+
+func Spinner(delay time.Duration) {
+
+    for {
+        for _, r := range `-\|/` {
+            fmt.Printf("\r%c", r)
+            time.Sleep(delay)
+		
+        }
+    }
+}
+
+func Fib(x int) int {
+    if x < 2 {
+        return x
+    }
+    return Fib(x-1) + Fib(x-2)
 }

@@ -143,4 +143,5 @@ func ReadFileByIo() {
 	if err != nil {
 		panic(err.Error())
 	}
+	fmt.Fprint()
 }
