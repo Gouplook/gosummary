@@ -27,7 +27,14 @@ func TestGoStrings2(t *testing.T) {
 	//b := strings.Contains("e200.situ.car10", "situ")
 	//fmt.Printf("b=%v\n", b)
 
-	s := fmt.Sprintf("waypoints(%v) can", 1)
+	//s := fmt.Sprintf("waypoints(%v) can", 1)
+	//fmt.Println(s)
+	a := []string{"abc", "bcd", "bv"}
+	s := Join(a, ":")
 	fmt.Println(s)
 
+}
+
+func TestGoReader(t *testing.T) {
+	GoReader()
 }
