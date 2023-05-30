@@ -1,0 +1,18 @@
+type (
+	SendArgs {
+	}
+
+	SendReply {
+		Code int64  `json:"code"`
+		Msg  string `json:"msg"`
+	}
+)
+@server(
+	prefix: v1/email
+	group: v1
+)
+
+service emailApi  {
+	@handler SendEmail
+	post  /send (SendArgs) returns (SendReply)
+}

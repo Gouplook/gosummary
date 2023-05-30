@@ -16,7 +16,7 @@ func main() {
 	time.Sleep(5 * time.Second)
 }
 func read(i int) {
-	//m.RLock()
+	m.RLock()
 	time.Sleep(1 * time.Second)
 	println("val: ", val)
 	time.Sleep(1 * time.Second)

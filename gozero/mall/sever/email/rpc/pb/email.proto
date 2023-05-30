@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pb;
+// $ cd mall/user/rpc
+//$ goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=.
+// protoc-gen-go 版本大于1.4.0, proto文件需要加上go_package,否则无法生成
+option go_package = "./pb";
+
+
+message SendRequest {
+  // 发送邮箱名称
+  string to_email = 1;
+}
+
+message SendResponse {
+
+  string code = 1;
+
+}
+
+service EmailServer {
+  rpc SendEmailRpc(SendRequest) returns(SendResponse);
+}
