@@ -1,3 +1,16 @@
 Name: emailApi
 Host: 0.0.0.0
 Port: 8881
+# ETCD链接方式 调用rpc服务节点信息
+#EmailRpc:
+#  Etcd:
+#    Hosts:
+#    - 127.0.0.1:2379
+#    Key: email.rpc
+
+# 直连
+EmailRpc:
+  Endpoints:
+    - 127.0.0.1:2379
+  Key: email.rpc
+

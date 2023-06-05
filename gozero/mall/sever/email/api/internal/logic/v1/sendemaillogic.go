@@ -3,9 +3,9 @@ package v1
 import (
 	"context"
 	"fmt"
-
 	"mall/sever/email/api/internal/svc"
 	"mall/sever/email/api/internal/types"
+	"mall/sever/email/rpc/emailserver"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -28,10 +28,13 @@ func (l *SendEmailLogic) SendEmail(req *types.SendArgs) (resp *types.SendReply, 
 	resp = new(types.SendReply)
 	resp.Code = 5000
 	resp.Msg = "success"
-	fmt.Println("====")
-	l.Logger.Error("error")
-	fmt.Sprintf("=============")
-	l.Logger.Debug("debug")
+
+	args := new(emailserver.SendRequest)
+	args.ToEmail = "yinjinlin_uplook@163.com"
+
+	//调用RPC服务
+	rs, _ := l.svcCtx.EmailRpc.SendEmailRpc(context.Background(), args)
+	fmt.Println(rs.Code)
 
 	return
 }

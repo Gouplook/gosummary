@@ -1,5 +1,6 @@
 Name: email.rpc
-ListenOn: 127.0.0.1:8080
+ListenOn: 127.0.0.1:8082
+#采用etcd，或者不采用，直连，不需要etcd，直接配置端口和key
 #Etcd:
 #  Hosts:
 #  - 127.0.0.1:2379
