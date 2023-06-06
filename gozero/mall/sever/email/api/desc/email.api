@@ -1,10 +1,20 @@
 type (
+	// 发送邮件入参
 	SendArgs {
 	}
 
 	SendReply {
 		Code int64  `json:"code"`
 		Msg  string `json:"msg"`
+	}
+	// 查找邮件
+	FindArgs {
+		Id int64 `json:"id"`
+	}
+	FindReply {
+		ToMail string `json:"toMail"`
+		Code   int64  `json:"code"`
+		Msg    string `json:"msg"`
 	}
 )
 @server(
@@ -15,4 +25,6 @@ type (
 service emailApi  {
 	@handler SendEmail
 	post  /send (SendArgs) returns (SendReply)
+	@handler FindEmail
+	post  /find (FindArgs) returns (FindReply)
 }

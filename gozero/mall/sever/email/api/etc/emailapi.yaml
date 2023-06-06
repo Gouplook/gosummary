@@ -1,6 +1,9 @@
+# APi服务配置
 Name: emailApi
 Host: 0.0.0.0
 Port: 8881
+Timeout: 6000
+
 # ETCD链接方式 调用rpc服务节点信息
 #EmailRpc:
 #  Etcd:
@@ -11,6 +14,15 @@ Port: 8881
 # 直连
 EmailRpc:
   Endpoints:
-    - 127.0.0.1:2379
+    - 127.0.0.1:8082
   Key: email.rpc
+
+#数据库配置
+Mysql:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/mall?charset=utf8mb4&parseTime=True&loc=Local
+
+# Redis
+CacheRedis:
+  - Host: 127.0.0.1:6379
+#    Pass: 123456
 

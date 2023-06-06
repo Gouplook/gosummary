@@ -18,6 +18,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/send",
 				Handler: v1.SendEmailHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/find",
+				Handler: v1.FindEmailHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/v1/email"),
 	)

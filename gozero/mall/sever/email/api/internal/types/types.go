@@ -8,3 +8,13 @@ type SendReply struct {
 	Code int64  `json:"code"`
 	Msg  string `json:"msg"`
 }
+
+type FindArgs struct {
+	Id int64 `json:"id"`
+}
+
+type FindReply struct {
+	ToMail string `json:"toMail"`
+	Code   int64  `json:"code"`
+	Msg    string `json:"msg"`
+}

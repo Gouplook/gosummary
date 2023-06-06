@@ -5,3 +5,14 @@ ListenOn: 127.0.0.1:8082
 #  Hosts:
 #  - 127.0.0.1:2379
 #  Key: email.rpc
+
+
+#数据库配置
+Mysql:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/mall?charset=utf8mb4&parseTime=True&loc=Local
+
+# Redis
+CacheRedis:
+- Host: 127.0.0.1:6379
+  Pass: "123456"
+  Type: node

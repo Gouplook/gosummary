@@ -25,16 +25,18 @@ func NewSendEmailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendEma
 }
 
 func (l *SendEmailLogic) SendEmail(req *types.SendArgs) (resp *types.SendReply, err error) {
+
 	resp = new(types.SendReply)
-	resp.Code = 5000
-	resp.Msg = "success"
 
 	args := new(emailserver.SendRequest)
 	args.ToEmail = "yinjinlin_uplook@163.com"
 
 	//调用RPC服务
-	rs, _ := l.svcCtx.EmailRpc.SendEmailRpc(context.Background(), args)
+	rs, _ := l.svcCtx.EmailRpc.SendEmailRpc(l.ctx, args)
 	fmt.Println(rs.Code)
+
+	resp.Code = 5000
+	resp.Msg = "success"
 
 	return
 }
