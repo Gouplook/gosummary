@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/zrpc"
+	"mall/common/mqtt"
 )
 
 type Config struct {
@@ -11,4 +12,6 @@ type Config struct {
 		DataSource string
 	}
 	CacheRedis cache.CacheConf
+
+	C2cMqttConf mqtt.MqttClientConfig
 }

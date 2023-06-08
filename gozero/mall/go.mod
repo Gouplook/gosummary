@@ -4,6 +4,8 @@ go 1.18
 
 require (
 	github.com/didi/gendry v1.8.0
+	github.com/eclipse/paho.mqtt.golang v1.4.2
+	github.com/go-ozzo/ozzo-log v0.0.0-20160703175702-610cdd147d9a
 	github.com/zeromicro/go-zero v1.5.3
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0
@@ -24,6 +26,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.19.6 // indirect
 	github.com/go-openapi/jsonreference v0.20.1 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
+	github.com/go-ozzo/ozzo-config v0.0.0-20160627170238-0ff174cf5aa6 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
@@ -34,7 +37,9 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0 // indirect
+	github.com/hnakamur/jsonpreprocess v0.0.0-20171017030034-a4e954386171 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -71,6 +76,7 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/oauth2 v0.6.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/term v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect

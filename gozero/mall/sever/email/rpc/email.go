@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"mall/sever/email/rpc/internal/listen"
 
 	"mall/sever/email/rpc/internal/config"
 	"mall/sever/email/rpc/internal/server"
@@ -24,8 +25,10 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
+	// sever rpc/mqtt
 	svr := server.NewEmailServerServer(ctx)
-
+	serviceGroup := service.NewServiceGroup()
+	defer serviceGroup.Stop()
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		pb.RegisterEmailServerServer(grpcServer, svr)
 
@@ -33,8 +36,11 @@ func main() {
 			reflection.Register(grpcServer)
 		}
 	})
-	defer s.Stop()
-
+	serviceGroup.Add(s)
+	// mqtt
+	for _, mq := range listen.Mqtts(ctx) {
+		serviceGroup.Add(mq)
+	}
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
-	s.Start()
+	serviceGroup.Start()
 }

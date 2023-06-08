@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"sync"
 	"time"
 )
 
@@ -44,22 +43,27 @@ func main() {
 	//      lid&0x3,
 	//      weight)
 	// }
-	raw := []byte("{\"global_project_id\":\"\",\"map_version\":-1,\"map_id\":20221219,\"points\":[{\"long\":299727.88,\"lat\":2469359.2,\"theta\":0.44},{\"long\":300841.333844,\"lat\":2.468671195618e+06,\"theta\":3.39}]}")
-	group := sync.WaitGroup{}
-	for i := 0; i < 10000; i++ {
-		go func(i int) {
-			group.Add(1)
-			defer group.Done()
-			pre := time.Now().UnixMicro()
-			_, err := HttpClient("POST", "http://localhost:8888/mapservice/planning/get/path", raw, nil)
-			if err != nil {
-				fmt.Println("request error:", err.Error())
-			} else {
-				delta := time.Now().UnixMicro() - pre
-				fmt.Println(i, " request time:", float64(delta)/1e6)
-			}
-		}(i)
-	}
-	group.Wait()
+	//raw := []byte("{\"global_project_id\":\"\",\"map_version\":-1,\"map_id\":20221219,\"points\":[{\"long\":299727.88,\"lat\":2469359.2,\"theta\":0.44},{\"long\":300841.333844,\"lat\":2.468671195618e+06,\"theta\":3.39}]}")
+	//group := sync.WaitGroup{}
+	//for i := 0; i < 10000; i++ {
+	//	go func(i int) {
+	//		group.Add(1)
+	//		defer group.Done()
+	//		pre := time.Now().UnixMicro()
+	//		_, err := HttpClient("POST", "http://localhost:8888/mapservice/planning/get/path", raw, nil)
+	//		if err != nil {
+	//			fmt.Println("request error:", err.Error())
+	//		} else {
+	//			delta := time.Now().UnixMicro() - pre
+	//			fmt.Println(i, " request time:", float64(delta)/1e6)
+	//		}
+	//	}(i)
+	//}
+	//group.Wait()
+	//184683593728:struct {}{}, 184683593730
+	//184683593728:struct {}{}, 184683593730
+
+	fmt.Println(184683593728 >> 32)
+	fmt.Println(184683593730 >> 32)
 
 }
