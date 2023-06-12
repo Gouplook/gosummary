@@ -17,16 +17,16 @@ CacheRedis:
   Pass: admin
   Type: node
 
-  C2cMqttConf:
-    ClientIdPrefix: email-rpc-c2c
-    TopicPrefix: /mqtt_backend
-    EndPoint: 10.8.0.60:1883
-    Username: compass
-    Password: compass
-    ReconnectInterval: 3
-    KeepAlive: 3
-    PingTimeout: 3
-    TlsEnable: false
-    CaFilePath: conf/ca/root_cert.crt
-    CrtFilePath: conf/ca/device_cert.crt
-    KeyFilePath: conf/ca/device_key.pem
+C2cMqttConf:
+  ClientIdPrefix: email-rpc-c2c
+  TopicPrefix: /mqtt_backend
+  EndPoint: 127.0.0.1:1882
+  Username: compass
+  Password: compass
+  ReconnectInterval: 3
+  KeepAlive: 3
+  PingTimeout: 3
+  TlsEnable: false
+  CaFilePath: conf/ca/root_cert.crt
+  CrtFilePath: conf/ca/device_cert.crt
+  KeyFilePath: conf/ca/device_key.pem

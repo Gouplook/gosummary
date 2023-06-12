@@ -11,7 +11,6 @@ type Config struct {
 	Mysql struct {
 		DataSource string
 	}
-	CacheRedis cache.CacheConf
-
+	CacheRedis  cache.CacheConf
 	C2cMqttConf mqtt.MqttClientConfig
 }

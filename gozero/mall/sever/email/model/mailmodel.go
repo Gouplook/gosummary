@@ -74,6 +74,8 @@ func (m *defaultMailModel) Insert(ctx context.Context, data *Mail) (sql.Result, 
 	return ret, err
 
 }
+
+// FindOne 查找加入缓存
 func (m *defaultMailModel) FindOne(ctx context.Context, id int64) (*Mail, error) {
 	mailIdKey := fmt.Sprintf("%s%v", cacheMailIdPrefix, id)
 	var resp Mail
@@ -114,6 +116,7 @@ func (m *defaultMailModel) FindsNoCache(ctx context.Context, pageNum, pageSize i
 	}
 }
 
+// Update 更新，需要更新缓存
 func (m *defaultMailModel) Update(ctx context.Context, data *Mail) error {
 	mailIdKey := fmt.Sprintf("%s%v", cacheMailIdPrefix, data.Id)
 	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {

@@ -40,4 +40,5 @@ func (c *C2cHandler) subscribe() error {
 //
 func (c *C2cHandler) onHandle(topic, payload string) {
 	// todo  接到内如进行处理，可以调用逻辑
+
 }

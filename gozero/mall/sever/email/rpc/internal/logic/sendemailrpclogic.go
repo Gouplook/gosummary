@@ -2,8 +2,10 @@ package logic
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/zeromicro/go-zero/core/logx"
+	"mall/common/mqtt"
 	"mall/sever/email/rpc/internal/svc"
 	"mall/sever/email/rpc/pb/pb"
 )
@@ -52,7 +54,7 @@ func (l *SendEmailRpcLogic) SendEmailRpc(in *pb.SendRequest) (*pb.SendResponse, 
 	//l.svcCtx.MailMode.Insert()
 
 	// 查询
-	rs, _ := l.svcCtx.MailMode.FindOne(l.ctx, 7)
+	rs, _ := l.svcCtx.MailMode.FindOne(l.ctx, 8)
 	fmt.Println(rs.ToEmail)
 
 	// 分页查询(不带缓存）
@@ -67,7 +69,22 @@ func (l *SendEmailRpcLogic) SendEmailRpc(in *pb.SendRequest) (*pb.SendResponse, 
 	//}
 	//
 	//fmt.Println(rs)
+	payload, err := json.Marshal(rs.ToEmail)
+	if err != nil {
+		l.Logger.Error("json Marshal error")
+	}
 
-	resp.Code = "4006"
+	// 发送订阅
+	err = l.svcCtx.C2CClient.Publish(mqtt.Topic{
+		Name:     fmt.Sprintf("/sendMail"),
+		Retained: true,
+	}, payload)
+
+	if err != nil {
+		l.Logger.Error("Publish err ")
+		return nil, nil
+	}
+
+	resp.Code = "5000"
 	return resp, nil
 }
