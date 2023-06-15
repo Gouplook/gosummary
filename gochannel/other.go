@@ -6,7 +6,10 @@
 *******************************************/
 package gochannel
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // --------- Go ok 	用法总结------------
 
@@ -25,8 +28,8 @@ func TypeJudgment() {
 	a = "yin"
 	// 如果 ok 是 true，则说明 变量 a 是字符串类型，而 newA 就是 string 类型的变量，a 的实际值
 	newA, ok := a.(string)
-
 	fmt.Println(newA, ok)
+
 }
 
 //3: 判断 gochannel 是否 已关闭 且 有没有数据
@@ -40,4 +43,14 @@ func ChannelIsData() {
 
 		fmt.Println(x)
 	}
+	// 编写一个定时任务
+
+}
+
+func FileWrite() {
+	fiel, err := os.OpenFile("test.txt", os.O_CREATE|os.O_RDWR, 0666)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fiel.WriteString("hello world")
 }
