@@ -7,7 +7,6 @@ import (
 )
 
 //模拟退火算法
-
 const (
 	MaxTemp     = 1000.0 // 最大温度
 	MinTemp     = 1e-4   // 最小温度

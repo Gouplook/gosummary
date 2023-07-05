@@ -7,8 +7,13 @@ import (
 
 func GoSet() {
 	b := mapset.NewSet()
-	for va := range b.Iter() {
-		b.Add(va)
+	b.Add(1)
+	b.Add(2)
+	b.Add(66)
+
+	fmt.Println(b.Clone())
+	fmt.Println(b.Contains(66))
+	for nl := range b.Iter() {
+		fmt.Println(nl)
 	}
-	fmt.Println(b)
 }

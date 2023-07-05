@@ -38,3 +38,7 @@ func TestMakeSuffix(t *testing.T) {
 func TestRecvertest(t *testing.T) {
 	Recvertest()
 }
+
+func TestDemo_main(t *testing.T) {
+	Demo_main()
+}
