@@ -45,7 +45,7 @@ func Response2Geojson() {
 	//序列化
 	reJson, _ := out.MarshalJSON()
 	var filewrite *os.File
-	filewrite, _ = os.Create("./dense.geojson")
+	filewrite, _ = os.Create("./path-1.geojson")
 	defer filewrite.Close()
 	_, err = filewrite.WriteString(FormatJson(string(reJson)))
 	if err != nil {
