@@ -34,7 +34,7 @@ type MultiplePoint struct {
 	Destination NTPoint   `json:"destination"`
 	Distance    float64   `json:"distance,optional"`
 	Code        int       `json:"code,optional"`
-	Route       []NTPoint `json:"route,optional"`
+	Route       []NTPoint `json:"route_dense,optional"`
 }
 
 type MultipleResponse struct {
@@ -58,7 +58,7 @@ func MultipleResponse2Geojson() {
 			dense = append(dense, []float64{point.Lng, point.Lat})
 		}
 		// 写文件
-		writeGeojson(i, dense)
+		writeGeojson(i+74, dense)
 	}
 
 }

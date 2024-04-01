@@ -15,7 +15,7 @@ import (
 
 func TestBasicTime(t *testing.T) {
 	//BasicTime()
-	l := 549755813888
+	l := 223338299392
 
 	fmt.Println("SegId= ", l>>32)
 	fmt.Println("Id= ", l<<32>>32)

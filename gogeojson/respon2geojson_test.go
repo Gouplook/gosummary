@@ -1,7 +1,8 @@
+//go:build !windows
+
 package gogeojson
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -11,7 +12,6 @@ func TestResponse2Geojson(t *testing.T) {
 
 // 多站点距离请求
 func TestMultipleResponse2Geojson(t *testing.T) {
-	//MultipleResponse2Geojson()
-	id := 1417339207680 //
-	fmt.Println(id >> 32)
+	MultipleResponse2Geojson()
+	// 定义弧度值
 }
